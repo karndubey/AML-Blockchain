@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+
+
+                var kycID = $('#kycID').val();
+
+                $.get("http://localhost:3000/api/org.acme.model.KYCAsset/" +  kycID,
+                    function (data, status) {
+
+
+                        //$("#content").text(JSON.stringify(data));
+
+                        var result = JSON.stringify(data);
+
+                        //alert(result);
+                        var data = JSON.parse(result);
+                        $("#content").append("<p> UID_id     : " + data.uid + " </p>");
+                        $("#content").append("<p> Name  : " + data.customer.firstName +" "+data.customer.lastName +" </p>");
+                        $("#content").append("<p> Gender        : " + data.customer.gender + " </p>");
+                        $("#content").append("<p> address            : " + data.customer.address.address + " </p>");
+                        $("#content").append("<p> Zip             : " + data.customer.address.zipcode + " </p>");
+                        $("#content").append("<p> Dob         :" + data.customer.dob + " </p> ");
+                        var data = JSON.parse(result);
+
+
+                        //alert("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+                    });
+            });
+        });
+    </script>
+
+
+
+</head>
+<body>
+
+
+
+
+    <div align="center" id="display">
+        <h1> View Kyc Details </h1></br>
+        <p>Enter Adhar ID</p></br>
+
+
+        <input type="text" id="kycID" />
+
+        <button id="btn"> View  Details </button>
+
+
+        <p id="content">
+        </p>

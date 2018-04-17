@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+ var kycasset = {
+  "$class": "org.acme.model.KYCAsset",
+  "uid": $('#uid').val(),
+  "customer": {
+    "$class": "org.acme.model.Customer",
+    "firstName": $('#fname').val(),
+    "lastName": $('#lname').val(),
+    "gender": "Male",
+    "address": {
+      "$class": "org.acme.model.Address",
+      "address": $('#address').val(),
+      "zipcode": $('#zipcode').val(),
+      "id": "string"
+    },
+    "dob": $('#dob').val(),
+    "phoneNo": $('#phone_no').val(),
+    "pan": $('#pan').val(),
+    "Occupation": $('#occupation').val(),
+    "id": "string"
+  },
+  "bank": ["resource:org.acme.model.Bank#123"]
+}
+                
+                console.log(JSON.stringify(kycasset));
+                
+                $.post("http://localhost:3000/api/org.acme.model.KYCAsset",
+                   kycasset,
+                    function (data, status) {
+
+                        console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+                    });
+               
+            });
+        });
+    </script>
+
+
+
+</head>
+<body>
+
+    <div align="center" id="ownerContainer">
+        <h3> KYC Details </h3>
+
+        UID :
+        <input type="text" id="uid" />
+        <br />
+
+        First Name :
+        <input type="text" id="fname" />
+        <br />
+
+        Last Name:
+        <input type="text" id="lname" />
+        <br />
+
+        Address:
+        <input type="text" id="address" />
+        <br />
+
+        Zip Code :
+        <input type="text" id="zip" />
+        <br />
+
+        DOB:
+        <input type="text" id="dob" />
+        <br />
+
+
+        Phone No :
+        <input type="text" id="phone no" />
+        <br />
+
+        PAN :
+        <input type="text" id="pan" />
+        <br />
+
+        Occupation :
+        <input type="text" id="occupation" />
+        <br />
+
+        <button id="submitData">Submit </button>
+
+
+    </div>
+
+
+
+</body>
+</html>
